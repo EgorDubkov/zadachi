@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n,
+                t,
+                i;
+            n = int.Parse(Console.ReadLine());
+            int[,] mas = new int[n, n];
+            Random rnd = new Random();
+            for (i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    mas[i, j] = rnd.Next(-15, 16);
+                    Console.Write(mas[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+                for (int j = 0; j < n; j++)
+                {
+                    t = mas[0, j];
+                    mas[0,j]=mas [n-1, j];
+                    mas[n - 1, j] = t;
+                }
+                    Console.WriteLine();
+                    for (i = 0; i < n; i++)
+                    {
+                        for (int j = 0; j < n; j++)
+                        {
+                            Console.Write("{0} ", mas[i, j] + "\t");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.Read();
+            }
+        }
+
+    }
