@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Самолет
+    {
+        public long nomer;
+        public string type;
+        public double resurs;
+
+
+        public Самолет (long nomer, string type, double resurs)
+
+        {
+            this.nomer = nomer;
+            this.type = type;
+            this.resurs = resurs;
+
+        }
+
+
+        public void show()
+        {
+            Console.WriteLine("{0}, {1}, {2}", type, nomer, resurs);
+        }
+
+
+        public double get
+        {
+            set { resurs = value; }
+            get { return resurs; }
+        }
+
+
+        public double set
+        {
+            set
+            {
+                if (value >= 200)
+                   Console.Write(nomer);
+            }
+        }
+    }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Read();
+        }
+    }
+
