@@ -5,27 +5,18 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
+    class Экипаж
+    {
+        public string командир;
+        public string штурман;
+    }
+
     class Самолет
     {
         public long nomer;
         public string type;
         public double resurs;
 
-
-        public Самолет (long nomer, string type, double resurs)
-
-        {
-            this.nomer = nomer;
-            this.type = type;
-            this.resurs = resurs;
-
-        }
-
-
-        public void show()
-        {
-            Console.WriteLine("{0}, {1}, {2}", type, nomer, resurs);
-        }
 
 
         public double get
@@ -40,17 +31,44 @@ namespace ConsoleApplication1
             set
             {
                 if (value >= 200)
-                   Console.Write(nomer);
+                    Console.Write(nomer);
             }
         }
     }
 
-    }
-    class Program
+    class Авиарейс
     {
-        static void Main(string[] args)
+        private Самолет сам;
+        private Экипаж экип;
+
+        public Авиарейс(Самолет сам, Экипаж экип)
         {
-            Console.Read();
+            this.сам = сам;
+            this.экип = экип;
+        }
+        public void show()
+        {
+            Console.WriteLine("{0}, {1}, {2}, {3}, {4}", сам.nomer, сам.resurs, сам.type, экип.командир, экип.штурман);
+        }
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Самолет с;
+                Экипаж э;
+
+                с = new Самолет();
+                с.nomer = 123123;
+                с.resurs = 123;
+                с.type = "type";
+
+                э = new Экипаж();
+                э.командир = "Иван";
+                э.штурман = "Василий";
+
+                Console.Read();
+            }
+
         }
     }
-
+}
