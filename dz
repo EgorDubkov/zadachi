@@ -1,0 +1,250 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+
+    class Gas
+    {
+        public int rate;
+        public int quantity;
+        public string surname;
+
+        public Gas(int rate_, int quantity_, string surname_) {
+            this.rate = rate_;
+            this.quantity = quantity_;
+            this.surname = surname_;
+        }
+
+        public int payment() {
+            return this.rate * this.quantity;
+        }
+
+        public void print() {
+
+            Console.WriteLine("Rate is ", this.rate);
+            Console.WriteLine("Quantity is ", this.quantity);
+            Console.WriteLine("Surname is ", this.surname);
+            Console.WriteLine("Payment is ", payment());
+
+        }
+
+        public void setRate(int a)
+        {
+            this.rate = a;
+        }
+
+        public void setQuantity (int a)
+        {
+            this.quantity = a;
+        }
+
+        public void setSurname(string a)
+        {
+            this.surname = a;
+        }
+
+        public int getRate()
+        {
+            return this.rate;
+        }
+
+        public int getQuantity()
+        {
+            return this.quantity;
+        }
+
+        public string getSurname()
+        {
+            return this.surname;
+        }
+
+    }
+
+    class Electricity
+    {
+        public int rate;
+        public int average;
+        public int fixEd;
+        public string surname;
+
+        public Electricity(int rate_, int average_, int fixEd_, string surname_) {
+            this.rate = rate_;
+            this.average = average_;
+            this.fixEd = fixEd_;
+            this.surname = surname_;
+        }
+
+        public int fixedPayment() {
+            return this.rate * this.fixEd;
+        }
+
+        public int factPayment(int previous, int current) {
+            return (current - previous) * this.rate;
+        }
+
+        public void print() {
+            Console.WriteLine("Surname is ", this.surname);
+            Console.WriteLine("Fixed payment is ", this.fixedPayment());
+        }
+
+        public void setRate(int a)
+        {
+            this.rate = a;
+        }
+
+        public void setAverage(int a)
+        {
+            this.average = a;
+        }
+
+        public void setFixed(int a)
+        {
+            this.fixEd = a;
+        }
+
+        public void setSurname(string a)
+        {
+            this.surname = a;
+        }
+
+        public int getRate()
+        {
+            return this.rate;
+        }
+
+        public int getAverage()
+        {
+            return this.average;
+        }
+
+        public int getFixed()
+        {
+            return this.fixEd;
+        }
+
+        public string getSurname()
+        {
+            return this.surname;
+        }
+    }
+
+
+    class Request
+    {
+        Gas[] gas;
+        Electricity[] electricity;
+        ArrayList payment = new ArrayList(0);
+
+        public void fillGas() {
+            Console.Write("Enter the number of gas requests : ");
+            int n = Int32.Parse(Console.ReadLine());
+            Console.WriteLine();
+            gas = new Gas[n];
+            for (int i = 0; i < n; i++) {
+                gas[i] = new Gas(0, 0, "");
+                Console.Write("Enter rate : ");
+                gas[i].setRate(Int32.Parse(Console.ReadLine()));
+                Console.WriteLine();
+                Console.Write("Enter quantity : ");
+                gas[i].setQuantity(Int32.Parse(Console.ReadLine()));
+                Console.WriteLine();
+                Console.Write("Enter surname : ");
+                gas[i].setSurname(Console.ReadLine());
+                Console.WriteLine();
+            } 
+
+       
+        }
+
+        public void fillElectricity() {
+
+            Console.Write("Enter the number of electricity requests : ");
+            int n = Int32.Parse(Console.ReadLine());
+            Console.WriteLine();
+            electricity = new Electricity[n];
+            for (int i = 0; i < n; i++)
+            {
+                electricity[i] = new Electricity(0, 0, 0, "");
+                Console.Write("Enter rate : ");
+                electricity[i].setRate(Int32.Parse(Console.ReadLine()));
+                Console.WriteLine();
+                Console.Write("Enter average : ");
+                electricity[i].setAverage(Int32.Parse(Console.ReadLine()));
+                Console.WriteLine();
+                Console.Write("Enter fixed : ");
+                electricity[i].setFixed(Int32.Parse(Console.ReadLine()));
+                Console.WriteLine();
+                Console.Write("Enter surname : ");
+                electricity[i].setSurname(Console.ReadLine());
+                Console.WriteLine();
+            }
+
+
+        }
+
+        public void printGas() {
+
+            for (int i = 0; i < gas.Length; i++) {
+                Console.WriteLine("Rate is " + gas[i].getRate());
+                Console.WriteLine("Quantity is " + gas[i].getQuantity());
+                Console.WriteLine("Surname is " + gas[i].getSurname());
+                Console.WriteLine();
+            }
+
+        }
+
+        public void printElectricity() {
+
+            for (int i = 0; i < electricity.Length; i++) {
+                Console.WriteLine("Rate is " + electricity[i].getRate());
+                Console.WriteLine("Average is " + electricity[i].getAverage());
+                Console.WriteLine("Fixed is " + electricity[i].getFixed());
+                Console.WriteLine("Surname is " + electricity[i].getSurname());
+                Console.WriteLine();
+            }
+
+        }
+
+
+        public void fillPayment() {
+            for (int i = 0; i < gas.Length; i++) {
+                payment.Add(gas[i]);
+            }
+            for (int i = 0; i < electricity.Length; i++) {
+                payment.Add(electricity[i]);
+            }
+
+        }
+
+        public void printPayment() {
+
+            printGas();
+            printElectricity();
+
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Request req = new Request();
+
+            req.fillGas();
+            req.fillElectricity();
+            req.fillPayment();
+            req.printPayment();
+                 
+            
+            Console.ReadKey();
+
+        }
+    }
+}
